@@ -1,13 +1,36 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jun 16 10:37:53 2020
+
+@author: mauricio
+"""
+
 # imports
 import datetime as dt
 
 
 # Base class for economic events
 class EcEvent(object):
+    
+    current_id = -1
+    @staticmethod
+    def new_id():
+        current_id += 1
+        return (current_id, 0)
+	
+    def __new__(cls, *args, **kwargs):
+        
+        if cls == EcEvent:
+            raise NotImplementedError("Events must be created with a subclass")
+        
+        obj = super(EcEvent, cls).__new__(cls)
+        obj.id = cls.new_id()
+        
+        return obj
 
-    def __init__(self, id, title = None, timestamp = None):
+    def __init__(self, title = None, timestamp = None):
 
-        self.id = id
         self.undefined_details = set()
 
         self.title = None
@@ -57,3 +80,4 @@ class EcEvent(object):
             self.undefined_details.add("title")
 
         return self.undefined_details
+
