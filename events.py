@@ -9,8 +9,8 @@ Created on Tue Jun 16 10:37:53 2020
 #TODO
 # maybe title is not necessary?
 # add errors
-# think if there's more classes other than Sale and Purchase
-
+# id probably needs to be saved on external file
+# add possibility to ommit ec_details
 
 # imports
 import datetime as dt
@@ -39,9 +39,13 @@ class EcEvent(object):
         
         return obj
 
-    def __init__(self, title = None, timestamp = None, description = None):
+    def __init__(self,
+            title = None, timestamp = None,
+            description = None, product = None,
+            total_price = None, quantity = None,
+            unity_price = None):
 
-        self.undefined_details = set()
+        self._undefined_details = set()
 
         self.title = None
         self.timestamp = None
@@ -50,6 +54,16 @@ class EcEvent(object):
         self.set_timestamp(timestamp)
         self.set_title(title)
         self.set_description(description)
+
+        if not product:
+            #TODO add error
+            pass
+        else:
+            self.product = product
+
+        self.set_ec_details(unity_price, quantity, total_price)
+
+        self.set_value()
 
     def set_title(self, title):
 
@@ -61,11 +75,11 @@ class EcEvent(object):
             self.title = common + "/id:" + str(self.id)
             self.get_undefined_details(title = False)
 
-    def set_timestamp(self, timestamp):
+    def set_timestamp(self, timestamp, date_format = "%d-%m-%Y"):
 
         if timestamp:
             try:
-                self.timestamp = dt.datetime(timestamp)
+                self.timestamp = dt.datetime.strptime(timestamp, date_format)
                 self.get_undefined_details(timestamp = True)
             #TODO add error
             except:
@@ -83,36 +97,64 @@ class EcEvent(object):
                 pass
             else:
                 self.description = description
+                self.get_undefined_details(description = True)
         else:
             self.description = None
             self.get_undefined_details(description = False)
 
+    def set_ec_details(self,
+            unity_price = None, quantity = None, total_price = None):
+
+        undefined = 0
+        for x in [unity_price, quantity, total_price]:
+            try:
+                float(x)
+            except ValueError:
+                undefined += 1
+        if undefined > 1:
+            self.get_undefined_details(ec_details = False)
+            pass#TODO add error
+
+        if not unity_price:
+            self.quantity = quantity
+            self.total_price = total_price
+            self.unity_price = total_price/quantity
+        elif not quantity:
+            self.unity_price = unity_price
+            self.total_price = total_price
+            self.quantity = total_price/unity_price
+        else:
+            self.unity_price = unity_price
+            self.quantity = quantity
+            self.total_price = unity_price*quantity
+            
+        self.get_undefined_details(ec_details = True)
+    
+    def set_value(self):
+        if "ec_details" not in self._undefined_details:
+            self.value = self._ec_value * self.total_price
+        else:
+            self.value = None
+    
     def get_undefined_details(self, **kwargs):
         
         if kwargs:
             for key in kwargs:
                 if kwargs[key]:
-                    self.undefined_details.remove(key)
+                    self._undefined_details.remove(key)
                 else:
-                    self.undefined_details.add(key)
-            return self.undefined_details
+                    self._undefined_details.add(key)
+            return self._undefined_details
         else:
             #TODO add error
             pass
-        
+    
 
-
-
-# Sales/Buy
-
-# Product
-# Total price
-# Unit price
-# Quantity
 
 class Sale(EcEvent):
 
     _type = "Sale"
+    _ec_value = 1
 
     @staticmethod
     def new_id():
@@ -128,14 +170,21 @@ class Sale(EcEvent):
 
         super().__init__(self, **kwargs)
 
-        # implement custom error
-        self.product = product
+class Purchase(EcEvent):
 
-        # implement info setting on parent class
-        self.set_sale_
+    _type = "Purchase"
+    _ec_value = -1
 
-    
+    @staticmethod
+    def new_id():
+        return (*super().new_id(), 1)
 
-        # think how to implement set title for subclasses (maybe wrapper?)
-        # work of undefined details should be done by parent
-        # title and timestamp too
+    def handle_missing_title(self):
+        return "Purchase:" + self.product
+
+    def __init__(
+        self, product, quantity = None,
+        total_price = None, unity_price = None,
+        **kwargs):
+
+        super().__init__(self, **kwargs)
