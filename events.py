@@ -8,12 +8,14 @@ Created on Tue Jun 16 10:37:53 2020
 
 #TODO
 # maybe title is not necessary?
-# add errors
 # id probably needs to be saved on external file
-# add possibility to ommit ec_details
+# add possibility to ommit ec_details (done ?)
+# add getters
 
 # imports
 import datetime as dt
+
+from error_classes import *
 
 
 # Base class for economic events
@@ -56,8 +58,9 @@ class EcEvent(object):
         self.set_description(description)
 
         if not product:
-            #TODO add error
-            pass
+            raise MissingEssentialInfo(
+                    "Att. 'product' was not defined",
+                    info_name = "product")
         else:
             self.product = product
 
@@ -81,10 +84,12 @@ class EcEvent(object):
             try:
                 self.timestamp = dt.datetime.strptime(timestamp, date_format)
                 self.get_undefined_details(timestamp = True)
-            #TODO add error
-            except:
-                self.timestamp = None
-                self.get_undefined_details(timestamp = False)
+            except (ValueError, TypeError):
+                raise InvalidInput(
+                    "Timestamp input was invalid",
+                    input = timestamp,
+                    info_name = "timestamp"
+                    )
         else:
             self.timestamp = None
             self.get_undefined_details(timestamp = False)
@@ -93,8 +98,11 @@ class EcEvent(object):
 
         if description:
             if type(description) != str:
-                #TODO add error
-                pass
+                raise InvalidInput(
+                    "Description input was invalid",
+                    input = description,
+                    info_name = "description"
+                    )
             else:
                 self.description = description
                 self.get_undefined_details(description = True)
@@ -110,10 +118,18 @@ class EcEvent(object):
             try:
                 float(x)
             except ValueError:
+                raise InvalidInput(
+                        "EcDetail input was invalid",
+                        input = (unity_price, quantity, total_price),
+                        info_name = "ec_detail"
+                        )            
+            except TypeError:
                 undefined += 1
         if undefined > 1:
             self.get_undefined_details(ec_details = False)
-            pass#TODO add error
+            raise MissingEssentialInfo(
+                "EcDetail is missing info",
+                info_name = "ec_detail")
 
         if not unity_price:
             self.quantity = quantity
@@ -146,8 +162,7 @@ class EcEvent(object):
                     self._undefined_details.add(key)
             return self._undefined_details
         else:
-            #TODO add error
-            pass
+            raise UserWarning("g.u.d. called without arguments")
     
 
 
