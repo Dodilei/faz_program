@@ -42,7 +42,9 @@ class EcEvent(object):
         return obj
 
     def __init__(self,
-            title = None, timestamp = None,
+            title = None,
+            first = None, third = None,
+            timestamp = None,
             description = None, product = None,
             total_price = None, quantity = None,
             unity_price = None):
@@ -50,11 +52,17 @@ class EcEvent(object):
         self._undefined_details = set()
 
         self.title = None
+        self.set_title(title)
+
+        self.first_party = None
+        self.third_party = None
+
+        self.set_parties(first, third)
+
         self.timestamp = None
         self.description = None
 
         self.set_timestamp(timestamp)
-        self.set_title(title)
         self.set_description(description)
 
         if not product:
@@ -77,6 +85,40 @@ class EcEvent(object):
             common = self.handle_missing_title()
             self.title = common + "/id:" + str(self.id)
             self.get_undefined_details(title = False)
+    
+    def set_parties(self, first, third):
+        
+        if first and type(first) == str:
+            #After company class is defined, test if it corresponds
+            #In the GUI, limit the options
+            self.first_party = first
+        elif first:
+            self.get_undefined_details(first = False)
+            raise InvalidInput(
+                "Company input was invalid",
+                input = first,
+                info_name = "first"
+                )
+        else:
+            self.get_undefined_details(first = False)
+            raise MissingImportantInfo(
+                "Att. 'first_party' was not defined",
+                info_name = "first")
+
+        if third and type(third) == str:
+            self.third_party = third
+        elif third:
+            self.get_undefined_details(third = False)
+            raise InvalidInput(
+                "Third-party company input was invalid",
+                input = third,
+                info_name = "third"
+                )
+        else:
+            self.get_undefined_details(third = False)
+            raise MissingImportantInfo(
+                "Att. 'third_party' was not defined",
+                info_name = "third")
 
     def set_timestamp(self, timestamp, date_format = "%d-%m-%Y"):
 
@@ -93,6 +135,7 @@ class EcEvent(object):
         else:
             self.timestamp = None
             self.get_undefined_details(timestamp = False)
+            raise MissingImportantInfo
     
     def set_description(self, description):
 
