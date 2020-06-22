@@ -1,3 +1,5 @@
 .vscode/*
 *.code-workspace
 .spyproject/
+.*
+__pycache__
