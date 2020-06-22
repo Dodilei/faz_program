@@ -13,7 +13,7 @@ Created on Tue Jun 16 10:37:53 2020
 # add getters
 
 # imports
-import datetime as dt
+import pandas as pd
 
 from error_classes import *
 
@@ -24,8 +24,8 @@ class EcEvent(object):
     current_id = -1
     @staticmethod
     def new_id():
-        current_id += 1
-        return (current_id, 0)
+        EcEvent.current_id += 1
+        return (EcEvent.current_id, 0)
 
     @staticmethod
     def handle_missing_title():
@@ -51,8 +51,13 @@ class EcEvent(object):
 
         self._undefined_details = set()
 
-        self.title = None
-        self.set_title(title)
+
+        if not product:
+            raise MissingEssentialInfo(
+                    "Att. 'product' was not defined",
+                    info_name = "product")
+        else:
+            self.product = product
 
         self.first_party = None
         self.third_party = None
@@ -65,12 +70,8 @@ class EcEvent(object):
         self.set_timestamp(timestamp)
         self.set_description(description)
 
-        if not product:
-            raise MissingEssentialInfo(
-                    "Att. 'product' was not defined",
-                    info_name = "product")
-        else:
-            self.product = product
+        self.title = None
+        self.set_title(title)
 
         self.set_ec_details(unity_price, quantity, total_price)
 
@@ -124,14 +125,20 @@ class EcEvent(object):
 
         if timestamp:
             try:
-                self.timestamp = dt.datetime.strptime(timestamp, date_format)
+                timestamp.date
+
+                self.timestamp = timestamp
                 self.get_undefined_details(timestamp = True)
-            except (ValueError, TypeError):
-                raise InvalidInput(
-                    "Timestamp input was invalid",
-                    input = timestamp,
-                    info_name = "timestamp"
-                    )
+            except AttributeError:
+                try:
+                    self.timestamp = pd.Timestamp(timestamp)
+                    self.get_undefined_details(timestamp = True)
+                except (ValueError, TypeError):
+                    raise InvalidInput(
+                        "Timestamp input was invalid",
+                        input = timestamp,
+                        info_name = "timestamp"
+                        )
         else:
             self.timestamp = None
             self.get_undefined_details(timestamp = False)
@@ -200,12 +207,33 @@ class EcEvent(object):
         if kwargs:
             for key in kwargs:
                 if kwargs[key]:
-                    self._undefined_details.remove(key)
+                    try:
+                        self._undefined_details.remove(key)
+                    except KeyError:
+                        pass
                 else:
                     self._undefined_details.add(key)
             return self._undefined_details
         else:
             raise UserWarning("g.u.d. called without arguments")
+    
+    def get_attribute(self, att):
+
+        dic = vars(self)
+
+        if not att in dic.keys():
+            raise InfoNotDefined(att, info_name = att)
+        else:
+            return dic[att]
+
+    def get_attributes(self, att_list):
+
+        r_list = []
+        for att in att_list:
+            r_list.append(self.get_attribute(att))
+        
+        return r_list
+
     
 
 
@@ -216,7 +244,7 @@ class Sale(EcEvent):
 
     @staticmethod
     def new_id():
-        return (*super().new_id(), 0)
+        return (*EcEvent.new_id(), 0)
 
     def handle_missing_title(self):
         return "Sale:" + self.product
@@ -232,7 +260,7 @@ class Purchase(EcEvent):
 
     @staticmethod
     def new_id():
-        return (*super().new_id(), 1)
+        return (*EcEvent.new_id(), 1)
 
     def handle_missing_title(self):
         return "Purchase:" + self.product
