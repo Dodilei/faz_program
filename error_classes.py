@@ -41,6 +41,11 @@ class InfoNotDefined(WarningErrors):
 
         super().__init__(self, *args, **kwargs)
 
+        try:
+            self.info_name = kwargs["info_name"]
+        except Exception:
+            self.info_name = None
+
 class InvalidInput(WarningErrors):
 
     def __init__(self, *args, **kwargs):
