@@ -46,8 +46,9 @@ class EcEvent(object):
             first = None, third = None,
             timestamp = None,
             description = None, product = None,
-            total_price = None, quantity = None,
-            unity_price = None):
+            unity_price = None, total_price = None,
+            quantity = None, measurement_unity = None
+            ):
 
         self._undefined_details = set()
 
@@ -72,6 +73,8 @@ class EcEvent(object):
 
         self.title = None
         self.set_title(title)
+
+        self.set_qt_unity(measurement_unity)
 
         self.set_ec_details(unity_price, quantity, total_price)
 
@@ -195,6 +198,16 @@ class EcEvent(object):
             self.total_price = unity_price*quantity
             
         self.get_undefined_details(ec_details = True)
+
+    def set_qt_unity(self, unity):
+        # add unity objects
+        # change quantity to unit objects
+        if unity and type(unity) == str:
+            self.unity = unity
+            self.get_undefined_details(unity = True)
+        else:
+            self.unity = None
+            self.get_undefined_details(unity = False)
     
     def set_value(self):
         if "ec_details" not in self._undefined_details:
