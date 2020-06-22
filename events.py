@@ -221,10 +221,7 @@ class Sale(EcEvent):
     def handle_missing_title(self):
         return "Sale:" + self.product
 
-    def __init__(
-        self, product, quantity = None,
-        total_price = None, unity_price = None,
-        **kwargs):
+    def __init__(self, **kwargs):
 
         super().__init__(self, **kwargs)
 
@@ -240,9 +237,6 @@ class Purchase(EcEvent):
     def handle_missing_title(self):
         return "Purchase:" + self.product
 
-    def __init__(
-        self, product, quantity = None,
-        total_price = None, unity_price = None,
-        **kwargs):
+    def __init__(self, **kwargs):
 
         super().__init__(self, **kwargs)
