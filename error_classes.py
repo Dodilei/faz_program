@@ -24,6 +24,17 @@ class MissingEssentialInfo(WarningErrors):
         except Exception:
             self.info_name = None
 
+class MissingImportantInfo(WarningErrors):
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(self, *args, **kwargs)
+
+        try:
+            self.info_name = kwargs["info_name"]
+        except Exception:
+            self.info_name = None
+
 class InfoNotDefined(WarningErrors):
 
     def __init__(self, *args, **kwargs):
