@@ -7,3 +7,5 @@ __pycache__
 _temp.*
 _temp*.*
 _temp/
+
+*/node_modules/
