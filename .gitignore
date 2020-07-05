@@ -3,3 +3,7 @@
 .spyproject/
 .*
 __pycache__
+
+_temp.*
+_temp*.*
+_temp/
