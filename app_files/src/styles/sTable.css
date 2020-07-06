@@ -1,0 +1,70 @@
+.datatb-container {
+    background-color: gainsboro;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding: 1.2%;
+    max-width: 40rem;
+}
+
+.datatb {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    table-layout: fixed;
+
+    width: 100%;
+}
+
+.datatb-row, .datatb-cell {
+    background-color: white;
+}
+
+
+.datatb-cell {
+    width: calc(96%/6);
+
+    border: solid gray;
+    border-width: 2px 1px 2px 0;
+
+    padding: 0.7% 1%;
+    text-align: center;
+    white-space: nowrap;
+
+    z-index: 0;
+
+    position: relative;
+}
+
+.datatb-cell:first-child {
+    border-left-width: 2px;
+    border-radius: 3px 0 0 3px;
+}
+.datatb-cell:last-child {
+    width: 4%;
+    border-right-width: 2px;
+    border-radius: 0 3px 3px 0;
+}
+
+.datatb-cell:hover {
+    z-index: 2;
+}
+
+.datatb-data {
+    display: block;
+    overflow: hidden;
+}
+
+.datatb-hovercell {
+    background-color: white;
+
+    border: solid rgb(25, 0, 255);
+    border-width: 2px;
+
+    padding: 6px 8px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%) scale(1.2);
+}

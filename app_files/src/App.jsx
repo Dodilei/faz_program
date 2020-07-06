@@ -9,8 +9,247 @@ const testObject = [
         styleClasses: ['default'],
         cellData: [
             {
-                data: 'A cell',
-                seq: 0,
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
+                styleClasses: ['default']
+            }
+        ]
+    },
+    {
+        title: 'Row',
+        description: 'A row',
+        open: false,
+        styleClasses: ['default'],
+        cellData: [
+            {
+                data: 'A very big cell 1',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 2',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 3',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 4',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 5',
+                styleClasses: ['default']
+            },
+            {
+                data: 'A very big cell 6',
+                styleClasses: ['default']
+            },
+            {
+                data: '.',
                 styleClasses: ['default']
             }
         ]

@@ -1,5 +1,8 @@
 import { Component } from "react";
 import React from 'react';
+import '../styles/sTable.css';
+
+import showOverflow from '../scripts/showOverflow.js';
 
 class TableCell extends Component {
     constructor(props) {
@@ -12,9 +15,10 @@ class TableCell extends Component {
 
     render() {
         return (
-            <td className={'cell'+this.seq}>
-                <div className={this.state.styleClasses.join(" ")}>
-                    <span>
+            <td className={'datatb-cell '+'cell'+this.seq}>
+                <div onClick={showOverflow}
+                className={this.state.styleClasses.join(" ")}>
+                    <span className="datatb-data">
                         {this.data}
                     </span>
                 </div>
@@ -40,7 +44,7 @@ class TableRow extends Component {
             let ccell_data = this.cell_data[i];
             this.cells.push(
                 <TableCell data={ccell_data.data}
-                seq={ccell_data.seq}
+                seq={i}
                 styleClasses={ccell_data.styleClasses}/>
             );
         }
@@ -50,7 +54,7 @@ class TableRow extends Component {
         //add this
         if (!this.state.open) {
             return (
-                <tr>
+                <tr className={this.state.styleClasses.concat('datatb-row').join(" ")}>
                     {this.cells}
                 </tr>
             );
@@ -84,8 +88,10 @@ class STable extends Component {
     render() {
         return (
             <div id={this.id+"-container"} className="datatb-container">
-                <table id={this.id+"-table"} className="datatbl">
-                    {this.rows}
+                <table id={this.id+"-table"} className="datatb">
+                    <tbody>
+                        {this.rows}
+                    </tbody>
                 </table>
             </div>
         )
