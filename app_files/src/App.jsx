@@ -7,33 +7,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -43,33 +43,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -79,33 +79,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -115,33 +115,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -151,33 +151,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -187,33 +187,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -223,33 +223,33 @@ const testObject = [
         description: 'A row',
         open: false,
         styleClasses: ['default'],
-        cellData: [
+        cellsData: [
             {
-                data: 'A very big cell 1',
+                inner_data: 'A very big cell 1',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 2',
+                inner_data: 'A very big cell 2',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 3',
+                inner_data: 'A very big cell 3',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 4',
+                inner_data: 'A very big cell 4',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 5',
+                inner_data: 'A very big cell 5',
                 styleClasses: ['default']
             },
             {
-                data: 'A very big cell 6',
+                inner_data: 'A very big cell 6',
                 styleClasses: ['default']
             },
             {
-                data: '.',
+                inner_data: '.',
                 styleClasses: ['default']
             }
         ]
@@ -258,7 +258,7 @@ const testObject = [
 
 function App() {
   return (
-    <STable id='table' rowData={testObject}/>
+    <STable id='table' rowsData={testObject}/>
   );
 }
 

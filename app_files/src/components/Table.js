@@ -7,17 +7,14 @@ import Wrapper from './ZoomWrapper.js'
 class CellData extends Component {
     constructor(props) {
         super(props);
-        this.onClick = props.onClick;
-        this.styleClasses = props.style;
-        this.classes = props.classes ? props.classes : [];
-        this.data = props.data;
-        this.atts = props.atts;
+        this.atts = {...props};
+        this.data = props.inner_data;
+        delete this.props.data;
     }
 
     render() {
         return (
-        <div onClick={this.onClick}
-            className={this.styleClasses.concat(this.classes).join(" ")} {...this.atts}>
+        <div {...this.atts}>
                 <span className="datatb-data">
                     {this.data}
                 </span>
@@ -29,7 +26,7 @@ class CellData extends Component {
 class TableCell extends Component {
     constructor(props) {
         super(props);
-        this.data = props.data;
+        this.inner_data = props.inner_data;
         this.seq = props.seq;
         this.state = {};
         this.state.styleClasses = props.styleClasses;
@@ -62,13 +59,10 @@ class TableCell extends Component {
         host.id = setInterval(isInside.bind(this, host), 100);
 
         let clone = <CellData
-        style={this.state.styleClasses}
-        classes={'datatb-hovercell'}
-        data={this.data}
-        atts={{
-            onMouseLeave: cloneRemove.bind(null, this, host)
-            }
-        } />;
+            className={this.state.styleClasses.concat('datatb-hovercell').join(" ")}
+            inner_data={this.inner_data}
+            onMouseLeave={cloneRemove.bind(null, this, host)}
+        />;
 
         let wrapper = null;
         if (Wrapper) {
@@ -96,7 +90,11 @@ class TableCell extends Component {
     render() {
         return (
             <td className={'datatb-cell '+'cell'+this.seq}>
-                <CellData onClick={(e) => {this.showOverflow.bind(this)(e, Wrapper)}} style={this.state.styleClasses} data={this.data}/>
+                <CellData
+                    onClick={(e) => {this.showOverflow.bind(this)(e, Wrapper)}}
+                    className={this.state.styleClasses.join(' ')}
+                    inner_data={this.inner_data}
+                 />
                 {this.state.overflow_child}
             </td>
         )
@@ -114,14 +112,14 @@ class TableRow extends Component {
 
         //save only modified rows
         //memory improvement? will i need this?
-        this.cell_data = props.cellData;
+        this.cellsData = props.cellsData;
         this.cells = [];
-        for (let i = 0; i < this.cell_data.length; i++) {
-            let ccell_data = this.cell_data[i];
+        for (let i = 0; i < this.cellsData.length; i++) {
+            let cellData = this.cellsData[i];
             this.cells.push(
-                <TableCell data={ccell_data.data}
+                <TableCell inner_data={cellData.inner_data}
                 seq={i}
-                styleClasses={ccell_data.styleClasses}/>
+                styleClasses={cellData.styleClasses}/>
             );
         }
     }
@@ -147,16 +145,16 @@ class STable extends Component {
         this.id = props.id;
         this.state = {};
         //think about best data placement and delivery
-        this.row_data = props.rowData;
+        this.rowsData = props.rowsData;
         this.rows = [];
-        for (let i = 0; i < this.row_data.length; i++) {
-            let crow_data = this.row_data[i];
+        for (let i = 0; i < this.rowsData.length; i++) {
+            let rowData = this.rowsData[i];
             this.rows.push(
-                <TableRow cellData={crow_data.cellData}
-                title={crow_data.title}
-                description={crow_data.description}
-                open={crow_data.open}
-                styleClasses={crow_data.styleClasses}/>
+                <TableRow cellsData={rowData.cellsData}
+                title={rowData.title}
+                description={rowData.description}
+                open={rowData.open}
+                styleClasses={rowData.styleClasses}/>
             );
         }
     }
