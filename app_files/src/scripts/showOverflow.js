@@ -1,20 +1,16 @@
 import React from 'react';
 
-function showOverflow(e, Wrapper) {
+function showOverflow(e) {
 
     const div = e.currentTarget;
     const cell = div.parentElement;
     const span = div.children[0];
 
-    let clone = undefined;
     if (span.scrollWidth <= span.clientWidth) {
         return false;
     }
-    if (Wrapper) {
-        clone = <Wrapper>{div.cloneNode(true)}</Wrapper>;
-    } else {
-        clone = div.cloneNode(true);
-    }
+
+    let clone = div.cloneNode(true);
     clone.classList.add('datatb-hovercell');
 
     cell.appendChild(clone);
