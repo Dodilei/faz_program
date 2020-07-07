@@ -35,51 +35,35 @@ class TableCell extends Component {
         const cell = div.parentElement;
         const span = div.children[0];
 
-        if (span.scrollWidth <= span.clientWidth) {
-            return false;
-        }
+        let cell_style = getComputedStyle(cell);
 
-        function cloneRemove(cell, host) {
-            cell.reset();
+        if (span.scrollWidth <= span.clientWidth) {return false}
+
+        function cloneRemove(host) {
+            this.setState({overflow_child: null});
             clearInterval(host.id);
         }
 
-        function isInside(host) {
-            if (cell_style['z-index'] === '0') {
-                cloneRemove(this, host);
-            }
+        let host = {};
+        cloneRemove = cloneRemove.bind(this, host);
+
+        function isInside() {
+            if (cell_style['z-index'] === '0') {cloneRemove()}
         }
 
-        let host = {};
-        host.id = setInterval(isInside.bind(this, host), 100);
+        host.id = setInterval(isInside, 100);
 
         let clone = <this.CellData
             className={this.state.styleClasses.concat('datatb-hovercell').join(" ")}
             inner_data={this.inner_data}
-            onMouseLeave={cloneRemove.bind(null, this, host)}
+            onMouseLeave={cloneRemove}
         />;
 
-        let wrapper = null;
-        if (Wrapper) {
-            wrapper = <Wrapper>{clone}</Wrapper>;
-        } else {
-            wrapper = <div>{clone}</div>;
-        }
+        let wrapper = Wrapper ? <Wrapper>{clone}</Wrapper> : clone;
 
         this.setState({
             overflow_child: wrapper
         });
-
-        let cell_style = getComputedStyle(cell);
-
-    }
-
-    reset() {
-        this.setState(
-                {
-                    overflow_child: null
-                }
-            )
     }
 
     render() {
