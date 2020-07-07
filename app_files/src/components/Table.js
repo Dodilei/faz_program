@@ -4,25 +4,6 @@ import '../styles/sTable.css';
 
 import Wrapper from './ZoomWrapper.js'
 
-class CellData extends Component {
-    constructor(props) {
-        super(props);
-        this.atts = {...props};
-        this.data = props.inner_data;
-        delete this.props.data;
-    }
-
-    render() {
-        return (
-        <div {...this.atts}>
-                <span className="datatb-data">
-                    {this.data}
-                </span>
-        </div>
-        )
-    }
-}
-
 class TableCell extends Component {
     constructor(props) {
         super(props);
@@ -32,6 +13,20 @@ class TableCell extends Component {
         this.state.styleClasses = props.styleClasses;
 
         this.state.overflow_child = null;
+    }
+
+    CellData(props) {
+        let data = props.inner_data;
+        let clean_props = {...props};
+        delete clean_props.inner_data;
+    
+        return (
+            <div {...props}>
+                    <span className="datatb-data">
+                        {data}
+                    </span>
+            </div>
+        )
     }
 
     showOverflow(e, Wrapper) {
@@ -58,7 +53,7 @@ class TableCell extends Component {
         let host = {};
         host.id = setInterval(isInside.bind(this, host), 100);
 
-        let clone = <CellData
+        let clone = <this.CellData
             className={this.state.styleClasses.concat('datatb-hovercell').join(" ")}
             inner_data={this.inner_data}
             onMouseLeave={cloneRemove.bind(null, this, host)}
@@ -90,7 +85,7 @@ class TableCell extends Component {
     render() {
         return (
             <td className={'datatb-cell '+'cell'+this.seq}>
-                <CellData
+                <this.CellData
                     onClick={(e) => {this.showOverflow.bind(this)(e, Wrapper)}}
                     className={this.state.styleClasses.join(' ')}
                     inner_data={this.inner_data}
