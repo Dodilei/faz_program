@@ -4,11 +4,14 @@ import React from 'react';
 class ZoomWrapper extends Component {
     constructor(props) {
         super(props);
+        this.children = props.children;
     }
     
     render() {
         return (
-            <div></div>
+            <div>
+                {this.children}
+            </div>
         )
     }
 }
