@@ -3,6 +3,7 @@ import React from 'react';
 import '../styles/sTable.css';
 
 import showOverflow from '../scripts/showOverflow.js';
+import Wrapper from './ZoomWrapper.js'
 
 class TableCell extends Component {
     constructor(props) {
@@ -11,17 +12,24 @@ class TableCell extends Component {
         this.seq = props.seq;
         this.state = {};
         this.state.styleClasses = props.styleClasses;
+
+        this.state.overflow_child = null;
+    }
+
+    reset() {
+        this.state.overflow_child = null;
     }
 
     render() {
         return (
             <td className={'datatb-cell '+'cell'+this.seq}>
-                <div onClick={showOverflow}
+                <div onClick={(e) => {showOverflow.bind(this)(e, Wrapper)}}
                 className={this.state.styleClasses.join(" ")}>
                     <span className="datatb-data">
                         {this.data}
                     </span>
                 </div>
+                {this.state.overflow_child}
             </td>
         )
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function showOverflow(e) {
+function showOverflow(e, Wrapper) {
 
     const div = e.currentTarget;
     const cell = div.parentElement;
@@ -13,23 +13,33 @@ function showOverflow(e) {
     let clone = div.cloneNode(true);
     clone.classList.add('datatb-hovercell');
 
-    cell.appendChild(clone);
+    let wrapper = null;
+    if (Wrapper) {
+        wrapper = <Wrapper>{clone}</Wrapper>;
+    } else {
+        wrapper = <div>{clone}</div>;
+    }
+
+    this.setState({
+        overflow_child: wrapper
+    }
+    );
 
     let cell_style = getComputedStyle(cell);
 
-    function cloneRemove(host) {
-        clone.remove();
+    function cloneRemove(cell, host) {
+        cell.reset();
         clearInterval(host.id);
     }
 
     function isInside(host) {
         if (cell_style['z-index'] === '0') {
-            cloneRemove(host);
+            cloneRemove(this, host);
         }
     }
 
     let host = {};
-    host.id = setInterval(isInside.bind(null, host), 100);
+    host.id = setInterval(isInside.bind(this, host), 100);
 
     clone.addEventListener("mouseleave", function() {
         cloneRemove(host);
