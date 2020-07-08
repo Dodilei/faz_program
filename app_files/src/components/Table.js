@@ -2,7 +2,7 @@ import { Component } from "react";
 import React from 'react';
 import '../styles/sTable.css';
 
-import Wrapper from './ZoomWrapper.js'
+import SelWrapper from './SelectionWrapper.js'
 
 class TableCell extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class TableCell extends Component {
             onMouseLeave={cloneRemove}
         />;
 
-        let wrapper = Wrapper ? <Wrapper>{clone}</Wrapper> : clone;
+        let wrapper = Wrapper ? <SelWrapper>{clone}</SelWrapper> : clone;
 
         this.setState({
             overflow_child: wrapper
