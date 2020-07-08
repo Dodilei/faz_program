@@ -2,10 +2,11 @@ import { Component } from "react";
 import React from 'react';
 
 class SelectionWrapper extends Component {
+
     constructor(props) {
+
         super(props);
         this.children = props.children;
-
     }
 
     makeSelection(e) {

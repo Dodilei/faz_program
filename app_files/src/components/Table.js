@@ -4,20 +4,27 @@ import '../styles/sTable.css';
 
 import SelWrapper from './SelectionWrapper.js'
 
+
 class TableCell extends Component {
+
     constructor(props) {
+
         super(props);
+        this.state = {};
+
         this.row = props.row;
+
         this.inner_data = props.inner_data;
         this.seq = props.seq;
-        this.state = {};
         this.state.styleClasses = props.styleClasses;
 
         this.state.overflow_child = null;
     }
 
     CellData(props) {
+
         let data = props.inner_data;
+
         let clean_props = {...props};
         delete clean_props.inner_data;
     
@@ -60,7 +67,7 @@ class TableCell extends Component {
             onMouseLeave={cloneRemove}
         />;
 
-        let wrapper = Wrapper ? <SelWrapper>{clone}</SelWrapper> : clone;
+        let wrapper = Wrapper ? <Wrapper>{clone}</Wrapper> : clone;
 
         this.setState({
             overflow_child: wrapper
@@ -70,24 +77,34 @@ class TableCell extends Component {
     render() {
         return (
             <td className={'datatb-cell '+'cell'+this.seq}>
+
                 <this.CellData
-                    onClick={(e) => {this.showOverflow.bind(this)(e, Wrapper)}}
-                    className={this.state.styleClasses.join(' ')}
-                    inner_data={this.inner_data}
+                    onClick ={(e) => {
+                        this.showOverflow.bind(this)(e, SelWrapper)
+                        }}
+                    className ={this.state.styleClasses.join(' ')}
+                    inner_data ={this.inner_data}
                  />
+
                 {this.state.overflow_child}
+
             </td>
         )
     }
 }
 
+
 class TableRow extends Component {
+
     constructor(props) {
+
         super(props);
+        this.state = {};
+        
         this.table = props.table;
+
         this.title = props.title;
         this.description = props.description;
-        this.state = {};
         this.state.open = props.open;
         this.state.styleClasses = props.styleClasses;
 
@@ -96,12 +113,17 @@ class TableRow extends Component {
         this.cellsData = props.cellsData;
         this.cells = [];
         for (let i = 0; i < this.cellsData.length; i++) {
+
             let cellData = this.cellsData[i];
+
             this.cells.push(
-                <TableCell inner_data={cellData.inner_data}
-                seq={i}
-                styleClasses={cellData.styleClasses}
-                row={this}/>
+
+                <TableCell
+                    inner_data ={cellData.inner_data}
+                    seq ={i}
+                    styleClasses ={cellData.styleClasses}
+                    row ={this}
+                />
             );
         }
     }
@@ -116,28 +138,37 @@ class TableRow extends Component {
             );
         } else {
             //pass
-        }
-            
+        }  
     }
 };
 
+
 class STable extends Component {
+
     constructor(props) {
+
         super(props);
-        this.id = props.id;
         this.state = {};
+
+        this.id = props.id;
+
         //think about best data placement and delivery
         this.rowsData = props.rowsData;
         this.rows = [];
         for (let i = 0; i < this.rowsData.length; i++) {
+
             let rowData = this.rowsData[i];
+
             this.rows.push(
-                <TableRow cellsData={rowData.cellsData}
-                title={rowData.title}
-                description={rowData.description}
-                open={rowData.open}
-                styleClasses={rowData.styleClasses}
-                table={this}/>
+
+                <TableRow
+                    cellsData ={rowData.cellsData}
+                    title ={rowData.title}
+                    description ={rowData.description}
+                    open ={rowData.open}
+                    styleClasses ={rowData.styleClasses}
+                    table ={this}
+                />
             );
         }
     }
@@ -154,5 +185,6 @@ class STable extends Component {
         )
     }
 }
+
 
 export default STable;
