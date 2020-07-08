@@ -7,6 +7,7 @@ import SelWrapper from './SelectionWrapper.js'
 class TableCell extends Component {
     constructor(props) {
         super(props);
+        this.row = props.row;
         this.inner_data = props.inner_data;
         this.seq = props.seq;
         this.state = {};
@@ -83,6 +84,7 @@ class TableCell extends Component {
 class TableRow extends Component {
     constructor(props) {
         super(props);
+        this.table = props.table;
         this.title = props.title;
         this.description = props.description;
         this.state = {};
@@ -98,7 +100,8 @@ class TableRow extends Component {
             this.cells.push(
                 <TableCell inner_data={cellData.inner_data}
                 seq={i}
-                styleClasses={cellData.styleClasses}/>
+                styleClasses={cellData.styleClasses}
+                row={this}/>
             );
         }
     }
@@ -133,7 +136,8 @@ class STable extends Component {
                 title={rowData.title}
                 description={rowData.description}
                 open={rowData.open}
-                styleClasses={rowData.styleClasses}/>
+                styleClasses={rowData.styleClasses}
+                table={this}/>
             );
         }
     }
