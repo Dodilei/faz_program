@@ -8,4 +8,24 @@ _temp.*
 _temp*.*
 _temp/
 
-*/node_modules/
+# dependencies
+app_files/node_modules
+app_files/.pnp
+app_files.pnp.js
+
+# testing
+app_files/coverage
+
+# production
+app_files/build
+
+# misc
+app_files/.DS_Store
+app_files/.env.local
+app_files/.env.development.local
+app_files/.env.test.local
+app_files/.env.production.local
+
+app_files/npm-debug.log*
+app_files/yarn-debug.log*
+app_files/yarn-error.log*
