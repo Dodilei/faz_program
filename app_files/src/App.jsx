@@ -1,5 +1,5 @@
 import React from 'react';
-import STable from './components/Table'
+import Table from './components/Table'
 
 const testObject = [
     {
@@ -258,7 +258,7 @@ const testObject = [
 
 function App() {
   return (
-    <STable id='table' rowsData={testObject}/>
+    <Table id='table' rowsData={testObject}/>
   );
 }
 

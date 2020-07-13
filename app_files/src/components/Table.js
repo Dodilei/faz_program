@@ -145,7 +145,7 @@ class TableRow extends Component {
 };
 
 
-class STable extends Component {
+class Table extends Component {
 
     constructor(props) {
 
@@ -189,4 +189,4 @@ class STable extends Component {
 }
 
 
-export default STable;
+export default Table;
