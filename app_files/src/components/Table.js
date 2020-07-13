@@ -1,6 +1,6 @@
 import { Component } from "react";
 import React from 'react';
-import '../styles/sTable.scss';
+import '../stylesheets/comps/Table.scss';
 
 import SelWrapper from './SelectionWrapper.js'
 
