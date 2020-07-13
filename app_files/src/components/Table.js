@@ -1,9 +1,11 @@
 import { Component } from "react";
 import React from 'react';
-import '../styles/sTable.css';
+import '../styles/sTable.scss';
 
 import SelWrapper from './SelectionWrapper.js'
 
+// ADD ~IDS TO ROWS AND CELLS
+// MAKE EVENTS A PROP GOT FROM MAIN TABLE
 
 class TableCell extends Component {
 
