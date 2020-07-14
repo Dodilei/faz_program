@@ -1,6 +1,8 @@
+@use '../colors';
+
 .datatb-container {
-    background-color: gainsboro;
-    border: 2px solid black;
+    background-color: colors.$table-bg;
+    border: 2px solid colors.$table-border;
     border-radius: 2px;
     padding: 1.2%;
     max-width: 40rem;
@@ -15,14 +17,14 @@
 }
 
 .datatb-row, .datatb-cell, .datatb-hovercell {
-    background-color: white;
+    background-color: colors.$cell-bg;
 }
 
 
 .datatb-cell {
     width: calc(96%/6);
 
-    border: solid gray;
+    border: solid colors.$cell-border;
     border-width: 2px 1px 2px 0;
 
     padding: 0.7% 1%;
@@ -46,7 +48,7 @@
 
 .datatb-cell:hover {
     z-index: 2;
-    background-color: rgb(255, 220, 123);
+    background-color: colors.$cell-select-bg;
 }
 
 .datatb-data {
@@ -56,7 +58,7 @@
 
 .datatb-hovercell {
 
-    border: 2px solid rgb(197, 145, 0);
+    border: 2px solid colors.$hovercell-border;
 
     padding: 6px 8px;
 
