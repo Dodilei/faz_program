@@ -1,11 +1,16 @@
 @use '../colors';
+@use '../border';
+
 
 .datatb-container {
-    background-color: colors.$table-bg;
-    border: 2px solid colors.$table-border;
-    border-radius: 2px;
-    padding: 1.2%;
+
     max-width: 40rem;
+
+    padding: 1.2%;
+
+    background-color: colors.$datatb-bg;
+    border: border.$datatb-border colors.$datatb-border;
+    border-radius: border.$datatb-bd-radius;
 }
 
 .datatb {
@@ -14,45 +19,44 @@
 }
 
 .datatb-row {
+
     display: flex;
     flex-direction: row;
+
     margin-top: 0.5rem;
 
-    background-color: colors.$cell-border;
-    border: 2px solid colors.$cell-border;
+    background-color: colors.$dtb-cell-border;
+    border: border.$dtb-row-border colors.$dtb-row-border;
+    border-radius: border.$dtb-row-bd-radius;
 }
-
-.datatb-cell, .datatb-hovercell {
-    background-color: colors.$cell-bg;
-}
-
 
 .datatb-cell {
-    box-sizing: border-box;
+
     width: calc(96%/6);
+    box-sizing: border-box;
 
-    margin: 0 0.5px;
+    position: relative;
+    z-index: 0;
 
-    padding: 0.7% 1%;
     text-align: center;
     white-space: nowrap;
 
-    z-index: 0;
+    margin: 0 (border.$dtb-cell-bd-width/2);
+    padding: 0.7% 1%;
 
-    position: relative;
+    background-color: colors.$dtb-cell-bg;
 }
-
 .datatb-cell:first-child {
-
+    margin-left: 0;
 }
 .datatb-cell:last-child {
+    margin-right: 0;
     width: 4%;
-
 }
 
 .datatb-cell:hover {
     z-index: 2;
-    background-color: colors.$cell-select-bg;
+    background-color: colors.$dtb-cell-hover-bg;
 }
 
 .datatb-data {
@@ -61,28 +65,30 @@
 }
 
 .datatb-cell:hover::after {
-    box-sizing: border-box;
     content: '';
-    position: absolute;
-    border: 2px solid colors.$cell-select-border;
-    border-radius: 1px;
+
     width: calc(100% + 2px);
     height: calc(100% + 4px);
+    box-sizing: border-box;
+
+    position: absolute;
     top: -2px;
     left: -1px;
+
+    border: border.$dtb-cell-hover-border colors.$dtb-cell-hover-border;
+    border-radius: border.$dtb-cell-hover-bd-radius;
 }
 
 .datatb-hovercell {
-
-    border: 2px solid colors.$hovercell-border;
-
-    padding: 6px 8px;
-
+    
     position: absolute;
-
     top: 50%;
     left: 50%;
-    
-    transform: translate(-50%, -50%) scale(1.2);
     z-index: 1;
+    
+    padding: 6px 8px;
+    
+    border: border.$dtb-hovercell-border colors.$dtb-hovercell-border;
+
+    transform: translate(-50%, -50%) scale(1.2);
 }
