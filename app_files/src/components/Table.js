@@ -113,10 +113,7 @@ class TableRow extends Component {
         //add this
         if (!this.state.open) {
             return (
-                <div
-                className ={this.state.styleClasses.concat('datatb-row').join(" ")}
-                {...this.userEvents}
-                >
+                <div className={this.state.styleClasses.concat('datatb-row').join(" ")}>
                     {this.cells}
                 </div>
             );
