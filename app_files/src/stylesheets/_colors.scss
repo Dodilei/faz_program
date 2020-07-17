@@ -2,12 +2,18 @@
 $highlight: rgb(197, 145, 0);
 
 // Table colors
-$cell-bg: white;
-$table-bg: gainsboro;
+$datatb-bg: gainsboro;
+$datatb-border: black;
 
-$cell-border: gray;
-$table-border: black;
-$hovercell-border: $highlight;
+$dtb-row-border: gray;
 
-$cell-select-bg: rgb(255, 220, 123);
-$cell-select-border: $highlight;
+$dtb-cell-bg: white;
+$dtb-cell-border: gray;
+
+$dtb-cell-hover-bg: rgb(255, 220, 123);
+$dtb-cell-hover-border: $highlight;
+
+$dtb-hovercell-border: $dtb-cell-border;
+
+
+
