@@ -41,8 +41,18 @@
     text-align: center;
     white-space: nowrap;
 
-    margin: 0 (border.$dtb-cell-bd-width/2);
-    padding: 0.7% 1%;
+    z-index: 0;
+
+    position: relative;
+}
+
+.datatb-cell:first-child {
+    margin-left: 0;
+}
+.datatb-cell:last-child {
+    margin-right: 0;
+    width: 4%;
+}
 
 .datatb-cell:hover {
     z-index: 2;
