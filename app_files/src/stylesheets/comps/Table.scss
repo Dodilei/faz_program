@@ -1,9 +1,8 @@
-@use '../colors';
-@use '../border';
-
-
 .datatb-container {
-
+    background-color: gainsboro;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding: 1.2%;
     max-width: 40rem;
 
     padding: 1.2%;
@@ -23,11 +22,12 @@
     display: flex;
     flex-direction: row;
 
-    margin-top: 0.5rem;
+    background-color: gray;
+    border: 2px solid gray;
+}
 
-    background-color: colors.$dtb-cell-border;
-    border: border.$dtb-row-border colors.$dtb-row-border;
-    border-radius: border.$dtb-row-bd-radius;
+.datatb-cell, .datatb-hovercell {
+    background-color: white;
 }
 
 .datatb-cell {
@@ -44,36 +44,8 @@
     margin: 0 (border.$dtb-cell-bd-width/2);
     padding: 0.7% 1%;
 
-    background-color: colors.$dtb-cell-bg;
-
-    &:first-child {
-        margin-left: 0;
-    }
-    &:last-child {
-        margin-right: 0;
-        width: 4%;
-    }
-
-    &:hover {
-        z-index: 2;
-        background-color: colors.$dtb-cell-hover-bg;
-        
-        &::after {
-            content: '';
-            pointer-events: none;
-        
-            width: calc(100% + 2px);
-            height: calc(100% + 4px);
-            box-sizing: border-box;
-        
-            position: absolute;
-            top: -2px;
-            left: -1px;
-        
-            border: border.$dtb-cell-hover-border colors.$dtb-cell-hover-border;
-            border-radius: border.$dtb-cell-hover-bd-radius;
-        }
-    }
+.datatb-cell:hover {
+    z-index: 2;
 }
 
 .datatb-data {
@@ -82,7 +54,11 @@
 }
 
 .datatb-hovercell {
-    
+
+    border: 2px solid gray;
+
+    padding: 6px 8px;
+
     position: absolute;
     top: 50%;
     left: 50%;
