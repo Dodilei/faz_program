@@ -78,7 +78,7 @@ class TableCell extends Component {
 
     render() {
         return (
-            <td className={'datatb-cell '+'cell'+this.seq}>
+            <div className={'datatb-cell '+'cell'+this.seq}>
 
                 <this.CellData
                     onClick ={(e) => {
@@ -90,7 +90,7 @@ class TableCell extends Component {
 
                 {this.state.overflow_child}
 
-            </td>
+            </div>
         )
     }
 }
@@ -134,9 +134,9 @@ class TableRow extends Component {
         //add this
         if (!this.state.open) {
             return (
-                <tr className={this.state.styleClasses.concat('datatb-row').join(" ")}>
+                <div className={this.state.styleClasses.concat('datatb-row').join(" ")}>
                     {this.cells}
-                </tr>
+                </div>
             );
         } else {
             //pass
@@ -178,11 +178,9 @@ class Table extends Component {
     render() {
         return (
             <div id={this.id+"-container"} className="datatb-container">
-                <table id={this.id+"-table"} className="datatb">
-                    <tbody>
+                <div id={this.id+"-table"} className="datatb">
                         {this.rows}
-                    </tbody>
-                </table>
+                </div>
             </div>
         )
     }
