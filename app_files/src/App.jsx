@@ -6,7 +6,7 @@ let FILE = child_process.execSync("node -e 'console.log(")
 
 function App() {
   return (
-    <ETable file={FILE}></ETable>
+    <Table id='table' userEvents ={{row: {}, cell: {}}} rowsData={testObject}/>
   );
 }
 

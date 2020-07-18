@@ -18,6 +18,12 @@ class TableCell extends Component {
         this.seq = props.seq;
 
         this.state.styleClasses = props.styleClasses;
+        this.userEvents = {}
+        for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
+            this.userEvents[Object.keys(props.userEvents)[i]] = (
+                Object.entries(props.userEvents)[i][1].bind(this)
+                );
+        }
 
         this.userEvents = {}
         for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
@@ -74,6 +80,7 @@ class TableRow extends Component {
 
         this.title = props.title;
         this.description = props.description;
+
         this.state.open = props.open;
 
         this.state.styleClasses = props.styleClasses;
@@ -113,7 +120,10 @@ class TableRow extends Component {
         //add this
         if (!this.state.open) {
             return (
-                <div className={this.state.styleClasses.concat('datatb-row').join(" ")}>
+                <div
+                className ={this.state.styleClasses.concat('datatb-row').join(" ")}
+                {...this.userEvents}
+                >
                     {this.cells}
                 </div>
             );
