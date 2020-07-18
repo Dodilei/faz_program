@@ -10,17 +10,7 @@ let FILE = child_process.execSync("node -e 'console.log(")
 
 function App() {
   return (
-    <Table
-      id ='table'
-      userEvents ={{
-        row: {
-
-        },
-        cell: {
-          onClick: argBinder(showOverflow, SelWrapper)
-        }
-      }}
-      rowsData ={testObject}/>
+    <Table id='table' userEvents ={{row: {}, cell: {}}} rowsData={testObject}/>
   );
 }
 
