@@ -18,6 +18,7 @@ class TableCell extends Component {
         this.seq = props.seq;
 
         this.state.styleClasses = props.styleClasses;
+
         this.userEvents = {}
         for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
             this.userEvents[Object.keys(props.userEvents)[i]] = (
