@@ -1,5 +1,9 @@
 import React from 'react';
-import Table from './components/Table'
+import Table from './components/Table';
+import {showOverflow} from './components/user_events/TableCellEvents';
+import SelWrapper from './components/SelectionWrapper'
+
+import argBinder from './util/argument_binder';
 
 const testObject = [
     {
@@ -258,7 +262,17 @@ const testObject = [
 
 function App() {
   return (
-    <Table id='table' userEvents ={{row: {}, cell: {}}} rowsData={testObject}/>
+    <Table
+      id ='table'
+      userEvents ={{
+        row: {
+
+        },
+        cell: {
+          onClick: argBinder(showOverflow, SelWrapper)
+        }
+      }}
+      rowsData ={testObject}/>
   );
 }
 
