@@ -18,7 +18,9 @@ class TableCell extends Component {
 
         this.inner_data = props.inner_data;
         this.seq = props.seq;
+
         this.state.styleClasses = props.styleClasses;
+
         this.userEvents = {}
         for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
             this.userEvents[Object.keys(props.userEvents)[i]] = (
@@ -87,9 +89,6 @@ class TableCell extends Component {
             <div className={'datatb-cell '+'cell'+this.seq}>
 
                 <this.CellData
-                    onClick ={(e) => {
-                        this.showOverflow.bind(this)(e, SelWrapper)
-                        }}
                     className ={this.state.styleClasses.join(' ')}
                     inner_data ={this.inner_data}
                     {...this.userEvents}
