@@ -2,11 +2,6 @@ import { Component } from "react";
 import React from 'react';
 import '../stylesheets/comps/Table.scss';
 
-import SelWrapper from './SelectionWrapper.js'
-
-// ADD ~IDS TO ROWS AND CELLS
-// MAKE EVENTS A PROP GOT FROM MAIN TABLE
-
 class TableCell extends Component {
 
     constructor(props) {
@@ -45,43 +40,6 @@ class TableCell extends Component {
                     </span>
             </div>
         )
-    }
-
-    showOverflow(e, Wrapper) {
-
-        const div = e.currentTarget;
-        const cell = div.parentElement;
-        const span = div.children[0];
-
-        let cell_style = getComputedStyle(cell);
-
-        if (span.scrollWidth <= span.clientWidth) {return false}
-
-        function cloneRemove(host) {
-            this.setState({overflow_child: null});
-            clearInterval(host.id);
-        }
-
-        let host = {};
-        cloneRemove = cloneRemove.bind(this, host);
-
-        function isInside() {
-            if (cell_style['z-index'] === '0') {cloneRemove()}
-        }
-
-        host.id = setInterval(isInside, 100);
-
-        let clone = <this.CellData
-            className={this.state.styleClasses.concat('datatb-hovercell').join(" ")}
-            inner_data={this.inner_data}
-            onMouseLeave={cloneRemove}
-        />;
-
-        let wrapper = Wrapper ? <Wrapper>{clone}</Wrapper> : clone;
-
-        this.setState({
-            overflow_child: wrapper
-        });
     }
 
     render() {
