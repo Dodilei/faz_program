@@ -258,7 +258,7 @@ const testObject = [
 
 function App() {
   return (
-    <Table id='table' rowsData={testObject}/>
+    <Table id='table' userEvents ={{row: {}, cell: {}}} rowsData={testObject}/>
   );
 }
 
