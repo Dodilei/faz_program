@@ -19,6 +19,12 @@ class TableCell extends Component {
         this.inner_data = props.inner_data;
         this.seq = props.seq;
         this.state.styleClasses = props.styleClasses;
+        this.userEvents = {}
+        for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
+            this.userEvents[Object.keys(props.userEvents)[i]] = (
+                Object.entries(props.userEvents)[i][1].bind(this)
+                );
+        }
 
         this.state.overflow_child = null;
     }
@@ -86,6 +92,7 @@ class TableCell extends Component {
                         }}
                     className ={this.state.styleClasses.join(' ')}
                     inner_data ={this.inner_data}
+                    {...this.userEvents}
                  />
 
                 {this.state.overflow_child}
@@ -107,8 +114,17 @@ class TableRow extends Component {
 
         this.title = props.title;
         this.description = props.description;
+
         this.state.open = props.open;
+
         this.state.styleClasses = props.styleClasses;
+        this.userEvents = {}
+        for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
+            this.userEvents[Object.keys(props.userEvents)[i]] = (
+                Object.entries(props.userEvents)[i][1].bind(this)
+                );
+        }
+        this.cellEvents = props.cellEvents;
 
         //save only modified rows
         //memory improvement? will i need this?
@@ -122,8 +138,12 @@ class TableRow extends Component {
 
                 <TableCell
                     inner_data ={cellData.inner_data}
+
                     seq ={i}
+
                     styleClasses ={cellData.styleClasses}
+                    userEvents ={this.cellEvents}
+
                     row ={this}
                 />
             );
@@ -134,7 +154,10 @@ class TableRow extends Component {
         //add this
         if (!this.state.open) {
             return (
-                <div className={this.state.styleClasses.concat('datatb-row').join(" ")}>
+                <div
+                className ={this.state.styleClasses.concat('datatb-row').join(" ")}
+                {...this.userEvents}
+                >
                     {this.cells}
                 </div>
             );
@@ -154,6 +177,8 @@ class Table extends Component {
 
         this.id = props.id;
 
+        this.userEvents = props.userEvents;
+
         //think about best data placement and delivery
         this.rowsData = props.rowsData;
         this.rows = [];
@@ -165,10 +190,16 @@ class Table extends Component {
 
                 <TableRow
                     cellsData ={rowData.cellsData}
+                    cellEvents ={this.userEvents.cell}
+
                     title ={rowData.title}
                     description ={rowData.description}
+
                     open ={rowData.open}
+
                     styleClasses ={rowData.styleClasses}
+                    userEvents ={this.userEvents.row}
+
                     table ={this}
                 />
             );
