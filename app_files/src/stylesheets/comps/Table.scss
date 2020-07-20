@@ -57,9 +57,10 @@
     &:hover {
         z-index: 2;
         background-color: colors.$dtb-cell-hover-bg;
-
+        
         &::after {
             content: '';
+            pointer-events: none;
         
             width: calc(100% + 2px);
             height: calc(100% + 4px);
@@ -90,6 +91,7 @@
     padding: 6px 8px;
     
     border: border.$dtb-hovercell-border colors.$dtb-hovercell-border;
+    background-color: colors.$dtb-cell-bg;
 
     transform: translate(-50%, -50%) scale(1.2);
 }
