@@ -2,16 +2,16 @@
 $highlight: rgb(197, 145, 0);
 
 // Table colors
-$datatb-bg: gainsboro;
+$datatb-bg: rgb(255, 255, 255);
 $datatb-border: black;
 
-$dtb-row-border: gray;
+$dtb-row-border: #e6b58d;
 
-$dtb-cell-bg: white;
+$dtb-cell-bg: #faf7ed;
 $dtb-cell-border: gray;
 
-$dtb-cell-hover-bg: rgb(255, 220, 123);
-$dtb-cell-hover-border: $highlight;
+$dtb-cell-hover-bg: $dtb-cell-bg;// hsl(46, 100%, 83%);
+$dtb-cell-hover-border: hsl(45, 100%, 50%);
 
 $dtb-hovercell-border: $dtb-cell-border;
 
