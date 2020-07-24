@@ -12,6 +12,7 @@ _temp/
 app_files/node_modules
 app_files/.pnp
 app_files.pnp.js
+app_files/package-lock.json
 
 # testing
 app_files/coverage
