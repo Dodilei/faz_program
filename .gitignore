@@ -1,9 +1,15 @@
+# project
 .vscode/*
 *.code-workspace
 .spyproject/
+
+# hidden
 .*
+
+# python
 __pycache__
 
+# temp
 _temp.*
 _temp*.*
 _temp/
@@ -30,3 +36,6 @@ app_files/.env.production.local
 app_files/npm-debug.log*
 app_files/yarn-debug.log*
 app_files/yarn-error.log*
+
+# excel
+*.xlsx
