@@ -75,7 +75,7 @@ def analyze(file, **kwargs):
         hmax = max(boundaries[start:end+1],
             key = lambda x: x[-1][-1])[-1][-1]
 
-        tables.append((start, end, hmin, hmax))
+        tables.append([start, end, hmin, hmax])
     
     print(tables)
 
