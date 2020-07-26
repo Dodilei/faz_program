@@ -1,13 +1,24 @@
 import pandas as pd
 import os
+import math
 from events import Sale, Purchase
 
-def find_blocks(array, value, return_all = True):
+def find_blocks(
+    array,
+    value = float('nan'),
+    key = (lambda x, y: x == y),
+    return_only = True):
+
+    if math.isnan(value):
+        onearg = True
+    else:
+        onearg = False
+
     blocks = []
 
     last = "undefined"
     for index, item in enumerate(array):
-        current = (item == value)
+        current = key(item, value) if not onearg else key(item)
 
         if last == current:
             pass
@@ -24,10 +35,12 @@ def find_blocks(array, value, return_all = True):
 
     blocks.append(((start, index), btype))
     
-    if return_all:
+    if not return_only:
         return blocks
-    else:
+    elif return_only == 'this':
         return [block for block, btype in blocks if btype]
+    elif return_only == 'other':
+        return [block for block, btype in blocks if not btype]
 
 def analyze(file, **kwargs):
     sheet = pd.read_excel(
@@ -40,7 +53,11 @@ def analyze(file, **kwargs):
 
     nas = sheet.apply(lambda r: r.dropna().empty, axis = 1)
     sizes = sheet.apply(lambda r: r.dropna().size, axis = 1)
-    blocks = find_blocks(nas, False, return_all = False)
+    boundaries = sheet.apply(
+        lambda r: find_blocks(
+            r, key = lambda x: x != x, return_only = "other"),
+            axis = 1)
+    blocks = find_blocks(nas, False, return_only = "this")
 
     for b in blocks:
         start, end = b
@@ -49,7 +66,19 @@ def analyze(file, **kwargs):
         elif sizes[start] < sizes[start:end+1].max()*0.8:
             blocks.remove(b)
 
-   
+    tables = []
+    for b in blocks:
+        start, end = b
+
+        hmin = min(boundaries[start:end+1],
+            key = lambda x: x[0][0])[0][0]
+        hmax = max(boundaries[start:end+1],
+            key = lambda x: x[-1][-1])[-1][-1]
+
+        tables.append((start, end, hmin, hmax))
+    
+    print(tables)
+
 
 if __name__ == "__main__":
     import argparse
