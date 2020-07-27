@@ -1,15 +1,13 @@
 import React from 'react';
-import Table from './components/Table';
-import {showOverflow} from './components/user_events/TableCellEvents';
-import SelWrapper from './components/SelectionWrapper'
+import ETable from './components/ETable';
 
-import argBinder from './util/argument_binder';
-
+const child_process = require('child_process');
+let FILE = child_process.execSync("node -e 'console.log(")
 
 function App() {
   return (
-    <p>{"APP"}</p>
+    <ETable file={FILE}></ETable>
   );
 }
 
-export default App
+export default App;
