@@ -23,20 +23,6 @@ class TableCell extends Component {
                 );
         }
 
-        this.userEvents = {}
-        for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
-            this.userEvents[Object.keys(props.userEvents)[i]] = (
-                Object.entries(props.userEvents)[i][1].bind(this)
-                );
-        }
-
-        this.userEvents = {}
-        for (let i = 0; i<Object.keys(props.userEvents).length; i++) {
-            this.userEvents[Object.keys(props.userEvents)[i]] = (
-                Object.entries(props.userEvents)[i][1].bind(this)
-                );
-        }
-
         this.state.overflow_child = null;
     }
 
