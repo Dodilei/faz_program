@@ -1,0 +1,83 @@
+.datatb-container {
+    background-color: gainsboro;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding: 1.2%;
+    max-width: 40rem;
+
+    padding: 1.2%;
+
+    background-color: colors.$datatb-bg;
+    border: border.$datatb-border colors.$datatb-border;
+    border-radius: border.$datatb-bd-radius;
+}
+
+.datatb {
+    display: flex;
+    flex-direction: column;
+}
+
+.datatb-row {
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: gray;
+    border: 2px solid gray;
+}
+
+.datatb-cell, .datatb-hovercell {
+    background-color: white;
+}
+
+.datatb-cell {
+
+    width: calc(96%/6);
+    box-sizing: border-box;
+
+    position: relative;
+    z-index: 0;
+
+    text-align: center;
+    white-space: nowrap;
+
+    z-index: 0;
+
+    position: relative;
+}
+
+.datatb-cell:first-child {
+    margin-left: 0;
+}
+.datatb-cell:last-child {
+    margin-right: 0;
+    width: 4%;
+}
+
+.datatb-cell:hover {
+    z-index: 2;
+}
+
+.datatb-data {
+    display: block;
+    overflow: hidden;
+}
+
+.datatb-hovercell {
+
+    border: 2px solid gray;
+
+    padding: 6px 8px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    
+    padding: 6px 8px;
+    
+    border: border.$dtb-hovercell-border colors.$dtb-hovercell-border;
+    background-color: colors.$dtb-cell-bg;
+
+    transform: translate(-50%, -50%) scale(1.2);
+}
